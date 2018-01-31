@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Digital Time</title>
+    <link rel="stylesheet" type="text/css" href="digital.css">
+  </head>
+
+  <body>
+     <div id="clockDiplay"></div>
+     <div id="hex"></div>
+     <script type="text/javascript">
+
+       var date, hour, minute, second, color, time;
+       function theTimeIs(){
+         date = new Date();
+         hour = date.getHours();
+         minute = date.getMinutes();
+         second = date.getSeconds();
+
+
+         var timePeriod="am";
+         if (hour==0){
+             hour=12;
+         }
+         if (hour>12){
+             hour=hour-12;
+             timePeriod="pm";
+         }
+
+         if (hour<10){
+             hour="0"+hour;
+         }
+         if (minute<10){
+             minute="0"+minute;
+         }
+         if (second<10){
+             second="0"+second;
+         }
+
+        time=hour+":"+minute+":"+second+timePeriod;
+        color="#"+hour+minute+second;
+        document.body.style.background=color;
+        document.getElementById("hex").innerHTML = color;
+        document.getElementById("clockDiplay").innerHTML = time;
+
+      }
+
+      theTimeIs();
+      setInterval(theTimeIs,1000);
+   </script>
+  </body>
+</html>
